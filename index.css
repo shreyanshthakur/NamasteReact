@@ -60,6 +60,7 @@
     flex-wrap: wrap;
 }
 
+
 .shimmer-card {
     margin: 20px;
     width: 200px;
@@ -74,4 +75,9 @@
 
 .filter {
     display: flex;
+}
+
+.user-card {
+     padding: 10px;
+     border: 1px solid black;
 }
