@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withPromotedLabel} from "./RestaurantCard";
 import {useState, useEffect} from "react";
 import Shimmer from "./Shimmer";
 import { API_URL } from "../utils/constants";
@@ -10,6 +10,8 @@ const Body = () => {
   const [filteredRestaurant, setFilteredRestaurant] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -18,7 +20,6 @@ const Body = () => {
     
     const data = await fetch(API_URL);
     const json = await data.json();
-
     setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
@@ -74,7 +75,12 @@ const Body = () => {
             key={restaurant.info.id} 
             to={"/restaurants/" + restaurant.info.id}
           >
-            <RestaurantCard resData = {restaurant}/>
+            {restaurant?.info?.avgRating > 4.5 ? (
+              <RestaurantCardPromoted resData={restaurant} />
+            ) : (
+              <RestaurantCard resData={restaurant}/>
+            )
+            }
           </Link>
         ))}
       </div>
