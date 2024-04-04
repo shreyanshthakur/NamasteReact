@@ -1,6 +1,7 @@
-# Namaste React 
+# Namaste React
 
 # Parcel
+
 - Dev Build
 - Local Server
 - HMR = Hot Module Replacement
@@ -18,18 +19,27 @@
 - Tree Shaking (Remove unused code)
 - Different dev and prod bundles
 
-
 Two types of Export/Import
 
 1. Default Export/Import:
-    export default Component;
-    import Component from "path";
-    
+   export default Component;
+   import Component from "path";
 2. Named Export/Import:
-    export const Component;
-    import {Component} from "path";
+   export const Component;
+   import {Component} from "path";
 
 # React Hooks
+
 Normal JS utility functions
+
 - useState()
 - useEffect()
+
+# Redux Toolkit
+
+- Install @reduxjs/toolkit and react-redux
+- Build our store
+- connect our store to our app
+- Slice (cartSlice)
+- dispatch(action)
+- Selector
