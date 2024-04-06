@@ -8,7 +8,7 @@ import UserContext from "../utils/UserContext";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredRestaurant, setFilteredRestaurant] = useState([]);
+  const [filteredRestaurant, setFilteredRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
@@ -23,7 +23,7 @@ const Body = () => {
     setListOfRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilteredRestaurant(
+    setFilteredRestaurants(
       json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
@@ -43,6 +43,7 @@ const Body = () => {
         <div className="search ml-5 p-4">
           <input
             type="text"
+            data-testid="searchInput"
             className="border border-solid border-black"
             value={searchText}
             onChange={(e) => {
@@ -52,31 +53,30 @@ const Body = () => {
           <button
             className="px-4 py-0.3 bg-green-300 m-4 rounded-lg"
             onClick={() => {
-              console.log(searchText);
-
               const filteredRestaurant = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
-              setFilteredRestaurant(filteredRestaurant);
+              setFilteredRestaurants(filteredRestaurant);
             }}
           >
             Search
           </button>
         </div>
-        <div className="m-4 p-4 flex items-center">
+        <div className="top rated restaurant m-4 p-4 flex items-center">
           <button
             className="px-4 py-0.3 bg-gray-300 rounded-lg"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4
+                (res) => res.info.avgRating >= 4.2
               );
-              setListOfRestaurants(filteredList);
+              console.log(filteredList);
+              setFilteredRestaurants(filteredList);
             }}
           >
-            ⬆️Top Rated Restaurants
+            Top Rated Restaurants
           </button>
         </div>
-        <div className="m-4 p-4 flex items-center">
+        <div className="username column m-4 p-4 flex items-center">
           <label>UserName : </label>
           <input
             className="border border-black rounded-lg p-2"
