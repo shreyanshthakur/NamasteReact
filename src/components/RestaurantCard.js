@@ -7,18 +7,24 @@ const RestaurantCard = (props) => {
   return (
     <div
       data-testid="resCard"
-      className="m-4 p-4 w-[250px] bg-gray-100 rounded-xl hover:bg-gray-200"
+      className="m-4 p-4 w-[250px] bg-gray-100 rounded-xl hover:bg-gray-200 h-[400px] flex flex-col"
     >
       <img
-        className="rounded-lg"
+        className="rounded-lg h-40 object-cover"
         alt="res-logo"
         src={CDN_URL + cloudinaryImageId}
       />
-      <h3 className="font-bold py-4">{name}</h3>
-      <h4>{cuisines.join(", ")}</h4>
-      <h4>{avgRating}⭐</h4>
-      <h4>{costForTwo}</h4>
-      <h4>Delivery in {sla.deliveryTime} min</h4>
+      <div className="flex flex-col justify-between flex-grow">
+        <div>
+          <h3 className="font-bold py-2">{name}</h3>
+          <h4 className="text-gray-600">{cuisines.join(", ")}</h4>
+        </div>
+        <div className="mt-2">
+          <h4 className="text-yellow-600">{avgRating}⭐</h4>
+          <h4 className="text-gray-600">{costForTwo}</h4>
+          <h4 className="text-gray-600">Delivery in {sla.deliveryTime} min</h4>
+        </div>
+      </div>
     </div>
   );
 };
